@@ -17,7 +17,7 @@
 
 <script>
 import axios from 'axios'
-const api = "https://script.google.com/macros/s/AKfycbzmQDCfi3aE0Rfzht658tbBbSThlnmG81X8Z5pGq1zJOCTnEQx5ScHgvk7NxhD-DfoxzQ/exec"
+const api = "<API>"
 export default {
   name: 'App',
   data () {
