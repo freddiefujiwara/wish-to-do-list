@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <meta charset="utf-8">
-    <title>Wish to do list</title>
-    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list2tree</title>
+    <script src="https://unpkg.com/vue@3.0.5"></script>
+    <link href="./style.css" rel="stylesheet">
   </head>
   <body>
-    <div id="app">
-    </div>
+    <header>
+      <h1>list2tree</h1>
+    </header>
+    <main>
+      <p id="desc">
+        リストをツリー（ディレクトリ形式）に変換するツールです。
+      </p>
+      <div id="app">
+        <div id="list">
+          <header id="list-header">
+            <div>List</div>
+          </header>
+          <div id="list-main">
+            <div contenteditable="true"
+                 v-for="(item, index) in items"
+                 :key=item.id
+                 >
+                 {{ item.value }}
+            </div>
+          </div>
+        </div>
+        <div id="tree">
+          <header id="tree-header">
+            Tree
+          </header>
+          <pre id="tree-main">{{ tree }}</pre>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

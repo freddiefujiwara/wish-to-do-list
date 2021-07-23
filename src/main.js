@@ -1,88 +1,18 @@
-import Vue from 'vue'
-import App from './App.vue'
-
-var STORAGE_KEY = 'todos-vuejs-demo'
-var todoStorage = {
-  fetch: function () {
-    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    todos.forEach(function (todo, index) {
-      todo.id = index
-    })
-    todoStorage.uid = todos.length
-    return todos
-  },
-  save: function (todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  }
-}
-
-
-new Vue({
-  rendar: h => h(App),
-  el: '#app',
-  data: () => {
-    return {
-      todos: [],
-      current: -1,
-      options: [
-        { value: -1, label: 'すべて' },
-        { value: 0, label: '作業中' },
-        { value: 1, label: '完了' }
-      ]
-    };
-  },
-
+import {createApp} from 'vue'
+//import App from './App.vue'
+createApp({
   computed: {
-
-    computedTodos: function () {
-      return this.todos.filter(function (el) {
-        return this.current < 0 ? true : this.current === el.state
-      }, this)
-    },
-
-    labels() {
-      return this.options.reduce(function (a, b) {
-        return Object.assign(a, { [b.value]: b.label })
-      }, {})
+    tree() {
+      return this.items.map(item => item.value).join('\n');
     }
   },
-
-  watch: {
-    todos: {
-      handler: function (todos) {
-        todoStorage.save(todos)
-      },
-      deep: true
+  data() {
+    return {
+      items: [
+        { id: 0, value: "item-0", indent: 0},
+        { id: 1, value: "item-1", indent: 1},
+        { id: 2, value: "item-2", indent: 1},
+      ]
     }
-  },
-
-  created() {
-    this.todos = todoStorage.fetch()
-  },
-
-  methods: {
-
-    doAdd: function() {
-      const comment = this.$refs.comment
-      if (!comment.value.length) {
-        return
-      }
-      this.todos.push({
-        id: todoStorage.uid++,
-        comment: comment.value,
-        state: 0
-      })
-      comment.value = ''
-    },
-
-    doChangeState: function (item) {
-      item.state = !item.state ? 1 : 0
-    },
-
-    doRemove: function (item) {
-      const index = this.todos.indexOf(item)
-      this.todos.splice(index, 1)
-    }
-
   }
-}).$mount('#app')
+}).mount('#app')
