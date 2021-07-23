@@ -1,24 +1,24 @@
-      <div id="app">
-        <div id="list">
-          <header id="list-header">
-            <div>List</div>
-          </header>
-          <div id="list-main">
-            <div contenteditable="true"
-                 v-for="(item, index) in items"
-                 :key=item.id
-                 >
-                 {{ item.title }}
-            </div>
-          </div>
-        </div>
-        <div id="tree">
-          <header id="tree-header">
-            Tree
-          </header>
-          <pre id="tree-main">{{ tree }}</pre>
-        </div>
+<template>
+  <div id="list">
+    <header id="list-header">
+      <div>List</div>
+    </header>
+    <div id="list-main">
+      <div contenteditable="true"
+           v-for="(item, index) in items"
+           :key=item.id
+           >
+           {{ item.title }}
       </div>
+    </div>
+  </div>
+  <div id="tree">
+    <header id="tree-header">
+      Tree
+    </header>
+    <pre id="tree-main">{{ tree }}</pre>
+  </div>
+</template>
 
 <script>
 export default {
