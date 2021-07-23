@@ -17,7 +17,7 @@
 
 <script>
 import axios from 'axios'
-const api = "https://script.google.com/macros/s/AKfycbytfGWcbaL1UXou6hrl9U9_gRPHt2iAH-nXpetUX0cI-wOGKG7QDJPTyziIgZeItKhJ4g/exec";
+const api = "https://script.google.com/macros/s/AKfycbyxOKMilvj7ePCJyEvmk4ZVh_a2stwMpNF607jg7uaICrJ3Nf1DW4eb6w1SHMaYsuEoDQ/exec"
 export default {
   name: 'App',
   data () {
@@ -26,9 +26,10 @@ export default {
     }
   },
   methods: {
-    onInput(e,item) {
+    async onInput(e,item) {
       item.title = e.target.innerText;
-      console.log(JSON.stringify(item))
+      const res = await axios.post(api,JSON.stringify(item))
+      console.log(res)
     }
   },
   async mounted () {
