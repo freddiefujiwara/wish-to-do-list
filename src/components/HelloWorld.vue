@@ -1,32 +1,55 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <h1>ToDo List</h1>
+
+    <label v-for="label in options" >
+      <input type="radio"
+             v-model="current"
+             v-bind:value="label.value">{{ label.label }}
+    </label>
+      （{{ computedTodos.length }} 件を表示）
+
+      <table>
+        <thead v-pre>
+          <tr>
+            <th class="id">ID</th>
+            <th class="comment">コメント</th>
+            <th class="state">状態</th>
+            <th class="button">-</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in computedTodos"
+            v-bind:key="item.id"
+            v-bind:class="{done:item.state}">
+            <th>{{ item.id }}</th>
+            <td>{{ item.comment }}</td>
+            <td class="state">
+              <!-- ★STEP10 状態変更ボタン -->
+              <button v-on:click="doChangeState(item)">
+                {{ labels[item.state] }}
+              </button>
+            </td>
+            <td class="button">
+              <!-- ★STEP10 削除ボタン -->
+              <button v-on:click.ctrl="doRemove(item)">
+                削除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>※削除ボタンはコントロールキーを押しながらクリックして下さい</p>
+
+      <!-- ★STEP6 -->
+      <h2>新しい作業の追加</h2>
+      <form class="add-form" v-on:submit.prevent="doAdd">
+        <!-- コメント入力フォーム -->
+        コメント <input type="text" ref="comment">
+        <!-- 追加ボタンのモック -->
+        <button type="submit">追加</button>
+      </form>
   </div>
 </template>
 
