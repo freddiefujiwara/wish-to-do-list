@@ -15,11 +15,13 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'App',
-  async data() {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
-    return await response.json()
+  data() {
+    axios
+      .get("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
+      .then(response => (this.items = response))
   }
 }
 </script>
