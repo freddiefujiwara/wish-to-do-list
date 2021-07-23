@@ -1,4 +1,4 @@
-import {createApp} from 'vue'
+import {createApp, h } from 'vue'
 import App from './App.vue'
 
 const STORAGE_KEY = 'todos-vuejs-demo'
@@ -18,7 +18,7 @@ const todoStorage = {
 
 
 createApp({
-  rendar: h => h(App),
+  rendar: () => h(App),
   el: '#app',
   data: () => {
     return {
