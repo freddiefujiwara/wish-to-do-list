@@ -28,6 +28,7 @@ export default {
   methods: {
     onInput(e,item) {
       item.title = e.target.innerText;
+      console.log(JSON.stringify(item))
     }
   },
   async mounted () {
