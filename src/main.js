@@ -1,8 +1,8 @@
-import Vue from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 
-var STORAGE_KEY = 'todos-vuejs-demo'
-var todoStorage = {
+const STORAGE_KEY = 'todos-vuejs-demo'
+const todoStorage = {
   fetch: function () {
     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     todos.forEach(function (todo, index) {
@@ -17,7 +17,7 @@ var todoStorage = {
 }
 
 
-new Vue({
+createApp({
   rendar: h => h(App),
   el: '#app',
   data: () => {
@@ -85,4 +85,4 @@ new Vue({
     }
 
   }
-}).$mount('#app')
+}).mount('#app')
