@@ -17,8 +17,8 @@ p#desc {
   margin: 3em auto 0;
 }
 
-#list, #tree {
-  width: 50%;
+#list {
+  width: 100%;
 }
 #app header{
   display: flex;
@@ -36,16 +36,6 @@ p#desc {
 }
 
 
-#tree {
-  background-color: #35495e;
-  color:#fff;
-  margin: 0 2em 0 1em;
-}
-#tree-main {
-  padding: 0.5em 1em 0.5em 20px;
-  margin: 0;
-  font-family: Consolas;
-}
 div[contenteditable] {
   display: list-item;
   outline: none;

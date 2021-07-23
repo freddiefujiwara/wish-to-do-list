@@ -12,22 +12,11 @@
       </div>
     </div>
   </div>
-  <div id="tree">
-    <header id="tree-header">
-      Tree
-    </header>
-    <pre id="tree-main">{{ tree }}</pre>
-  </div>
 </template>
 
 <script>
 export default {
   name: 'App',
-  computed: {
-    tree() {
-      return this.items.map(item => item.title).join('\n');
-    }
-  },
   data() {
     return {
       items: [
