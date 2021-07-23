@@ -1,4 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import Vue from 'vue'
+import store from './store'
+import App from './components/App.vue'
 
-createApp(App).mount('#app')
+new Vue({
+  store, // inject store to all children
+  el: '#app',
+  render: h => h(App)
+})
