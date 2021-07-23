@@ -29,7 +29,7 @@ export default {
     onInput(e,item) {
       item.title = e.target.innerText;
     }
-  }
+  },
   async mounted () {
     this.items =
       (await axios.get(api)).data
