@@ -8,7 +8,7 @@
                   v-model="current"
                   v-bind:value="label.value">{{ label.label }}
     </label>
-      （{{ computedTodos.length }} 件を表示）
+      （{{ computedTodos().length }} 件を表示）
 
       <table>
         <thead v-pre>

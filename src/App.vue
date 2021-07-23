@@ -7,7 +7,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 const STORAGE_KEY = 'todos-vuejs-demo'
 const todoStorage = {
-  fetch: function () {
+  fetch: () => {
     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     todos.forEach(function (todo, index) {
       todo.id = index
@@ -15,7 +15,7 @@ const todoStorage = {
     todoStorage.uid = todos.length
     return todos
   },
-  save: function (todos) {
+  save: (todos) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }
 }
@@ -40,14 +40,14 @@ export default {
 
   computed: {
 
-    computedTodos: function () {
-      return this.todos.filter(function (el) {
+    computedTodos: () => {
+      return this.todos.filter((el) => {
         return this.current < 0 ? true : this.current === el.state
       }, this)
     },
 
-    labels() {
-      return this.options.reduce(function (a, b) {
+    labels: () => {
+      return this.options.reduce((a, b) => {
         return Object.assign(a, { [b.value]: b.label })
       }, {})
     }
@@ -55,20 +55,20 @@ export default {
 
   watch: {
     todos: {
-      handler: function (todos) {
+      handler: function(todos) {
         todoStorage.save(todos)
       },
       deep: true
     }
   },
 
-  created() {
+  created: () => {
     this.todos = todoStorage.fetch()
   },
 
   methods: {
 
-    doAdd: function() {
+    doAdd: () => {
       const comment = this.$refs.comment
       if (!comment.value.length) {
         return
@@ -81,11 +81,11 @@ export default {
       comment.value = ''
     },
 
-    doChangeState: function (item) {
+    doChangeState: (item) => {
       item.state = !item.state ? 1 : 0
     },
 
-    doRemove: function (item) {
+    doRemove: (item) => {
       const index = this.todos.indexOf(item)
       this.todos.splice(index, 1)
     }
