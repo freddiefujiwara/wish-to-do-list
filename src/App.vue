@@ -7,6 +7,7 @@
       <div contenteditable="true"
            v-for="(item) in items"
            :key=item.id
+           @input="onInput($event,item)"
            >
            {{ item.title }}
       </div>
@@ -16,6 +17,7 @@
 
 <script>
 import axios from 'axios'
+const api = "https://script.google.com/macros/s/AKfycbytfGWcbaL1UXou6hrl9U9_gRPHt2iAH-nXpetUX0cI-wOGKG7QDJPTyziIgZeItKhJ4g/exec";
 export default {
   name: 'App',
   data () {
@@ -23,12 +25,14 @@ export default {
       items : null
     }
   },
+  methods: {
+    onInput(e,item) {
+      item.title = e.target.innerText;
+    }
+  }
   async mounted () {
-    this.items = (
-      await axios
-      .get("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
-    ).data
-    console.log(this.items)
+    this.items =
+      (await axios.get(api)).data
   }
 }
 </script>
