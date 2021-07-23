@@ -1,26 +1,41 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+      <div id="app">
+        <div id="list">
+          <header id="list-header">
+            <div>List</div>
+          </header>
+          <div id="list-main">
+            <div contenteditable="true"
+                 v-for="(item, index) in items"
+                 :key=item.id
+                 >
+                 {{ item.title }}
+            </div>
+          </div>
+        </div>
+        <div id="tree">
+          <header id="tree-header">
+            Tree
+          </header>
+          <pre id="tree-main">{{ tree }}</pre>
+        </div>
+      </div>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  computed: {
+    tree() {
+      return this.items.map(item => item.title).join('\n');
+    }
+  },
+  data() {
+    return {
+      items: [
+        { id: 0, title: "item-0", indent: 0},
+        { id: 1, title: "item-1", indent: 1},
+        { id: 2, title: "item-2", indent: 1},
+      ]
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

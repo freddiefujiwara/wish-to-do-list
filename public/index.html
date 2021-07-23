@@ -16,25 +16,6 @@
         リストをツリー（ディレクトリ形式）に変換するツールです。
       </p>
       <div id="app">
-        <div id="list">
-          <header id="list-header">
-            <div>List</div>
-          </header>
-          <div id="list-main">
-            <div contenteditable="true"
-                 v-for="(item, index) in items"
-                 :key=item.id
-                 >
-                 {{ item.value }}
-            </div>
-          </div>
-        </div>
-        <div id="tree">
-          <header id="tree-header">
-            Tree
-          </header>
-          <pre id="tree-main">{{ tree }}</pre>
-        </div>
       </div>
     </main>
   </body>
