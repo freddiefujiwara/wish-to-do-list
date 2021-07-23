@@ -26,6 +26,7 @@ export default {
   async mounted () {
     this.items = await axios
       .get("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
+      .data
     console.log(this.items)
   }
 }
