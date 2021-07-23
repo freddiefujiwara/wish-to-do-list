@@ -1,47 +1,47 @@
 <template>
-  <div>
-    <form @submit.prevent="addTodo">
-      <input type="text" v-model="title" name="title" placeholder="Add Todo...">
-      <input type="submit" value="Submit" class="btn">
-    </form>
-  </div>
+  <input type="text" v-model="state.inputValue" />
+  <button @click="onClick" :disabled="state.hasError">追加</button>
+  <p v-if="state.hasError" class="error">タイトルが長すぎ！</p>
 </template>
 
-<script>
-import {ref} from 'vue'
-export default {
-  name: "AddTodo",
+<script lang="ts">
+import { defineComponent, reactive, watchEffect } from 'vue'
 
-  setup(props,{emit}) {
-    const title = ref('');
-    function addTodo() {
-      const newTodo = {
-        title: title.value,
-        completed: false
-      }
-      // Send up to parent
-      emit('add-todo', newTodo);
-
-      title.value = '';
-    }
-    return {title,addTodo}
-  }
+interface State {
+  inputValue: string;
+  hasError: boolean;
 }
+export default defineComponent({
+  emits: ['add'],
+  setup (_, context) {
+    const state = reactive<State>({
+      inputValue: '',
+      hasError: false
+    })
+
+    const onClick = () => {
+      context.emit('add', state.inputValue)
+      state.inputValue = ''
+    }
+
+    watchEffect(() => {
+      if (state.inputValue.length > 10) {
+        state.hasError = true
+      } else {
+        state.hasError = false
+      }
+    })
+
+    return {
+      state,
+      onClick
+    }
+  }
+})
 </script>
 
 <style scoped>
-  form {
-    display: flex;
-  }
-
-  input[type="text"] {
-    flex: 10;
-    padding: 5px;
-  }
-
-  input[type="submit"] {
-    flex: 2;
-  }
+.error {
+  color: red;
+}
 </style>
-
-
