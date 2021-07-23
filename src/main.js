@@ -4,7 +4,7 @@ import App from './App.vue'
 var STORAGE_KEY = 'todos-vuejs-demo'
 var todoStorage = {
   fetch: function () {
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     todos.forEach(function (todo, index) {
       todo.id = index
     })
@@ -20,14 +20,16 @@ var todoStorage = {
 new Vue({
   rendar: h => h(App),
   el: '#app',
-  data: {
-    todos: [],
-    current: -1,
-    options: [
-      { value: -1, label: 'すべて' },
-      { value: 0, label: '作業中' },
-      { value: 1, label: '完了' }
-    ]
+  data: () => {
+    return {
+      todos: [],
+      current: -1,
+      options: [
+        { value: -1, label: 'すべて' },
+        { value: 0, label: '作業中' },
+        { value: 1, label: '完了' }
+      ]
+    };
   },
 
   computed: {
@@ -60,8 +62,8 @@ new Vue({
 
   methods: {
 
-    doAdd: function(event, value) {
-      var comment = this.$refs.comment
+    doAdd: function() {
+      const comment = this.$refs.comment
       if (!comment.value.length) {
         return
       }
@@ -78,7 +80,7 @@ new Vue({
     },
 
     doRemove: function (item) {
-      var index = this.todos.indexOf(item)
+      const index = this.todos.indexOf(item)
       this.todos.splice(index, 1)
     }
 
