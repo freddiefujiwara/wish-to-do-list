@@ -1,6 +1,6 @@
 import Vuex from 'vuex'
 
-export const store = Vuex.Store({
+export const store = new Vuex.Store({
   state: {
   },
   mutations: {
