@@ -5,7 +5,7 @@
     </header>
     <div id="list-main">
       <div contenteditable="true"
-           v-for="(item, index) in items"
+           v-for="(item) in items"
            :key=item.id
            >
            {{ item.title }}
