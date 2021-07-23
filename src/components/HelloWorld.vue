@@ -2,10 +2,11 @@
   <div class="hello">
     <h1>ToDo List</h1>
 
-    <label v-for="label in options" >
-      <input type="radio"
-             v-model="current"
-             v-bind:value="label.value">{{ label.label }}
+    <label v-for="label in options"
+           :key ="label.id">
+           <input type="radio"
+                  v-model="current"
+                  v-bind:value="label.value">{{ label.label }}
     </label>
       （{{ computedTodos.length }} 件を表示）
 
@@ -21,7 +22,7 @@
         <tbody>
           <tr
             v-for="item in computedTodos"
-            v-bind:key="item.id"
+            :key="item.id"
             v-bind:class="{done:item.state}">
             <th>{{ item.id }}</th>
             <td>{{ item.comment }}</td>
