@@ -17,14 +17,9 @@
 <script>
 export default {
   name: 'App',
-  data() {
-    return {
-      items: [
-        { id: 0, title: "item-0", indent: 0},
-        { id: 1, title: "item-1", indent: 1},
-        { id: 2, title: "item-2", indent: 1},
-      ]
-    }
+  async data() {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
+    return await response.json()
   }
 }
 </script>
