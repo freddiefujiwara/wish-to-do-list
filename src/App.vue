@@ -28,7 +28,7 @@ export default {
   methods: {
     async onInput(e,item) {
       item.title = e.target.innerText;
-      const res = await axios.post(api,JSON.stringify(item))
+      await axios.post(api,JSON.stringify(item))
     }
   },
   async mounted () {
