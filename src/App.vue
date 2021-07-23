@@ -18,7 +18,12 @@
 import axios from 'axios'
 export default {
   name: 'App',
-  data() {
+  data () {
+    return {
+      items : null
+    }
+  },
+  mounted () {
     axios
       .get("https://script.google.com/macros/s/AKfycbwlVE-efht7MU-DPd7dWnyujLthe5OdV19G83ZPshc4-un9cNripbRLphVxVUKAfjSwdw/exec")
       .then(response => (this.items = response))
