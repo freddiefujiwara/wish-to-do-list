@@ -1,4 +1,4 @@
-# wish-to-do-list
+# [wish-to-do-list](https://freddiefujiwara.com/wish-to-do-list/)
 
 ## Project setup
 ```
